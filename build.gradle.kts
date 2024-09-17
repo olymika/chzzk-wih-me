@@ -65,7 +65,7 @@ mavenPublishing {
     JavadocJar.None()
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-    coordinates("org.olymika", "chzzk-with-me", "0.0.1")
+    coordinates("org.olymika", "chzzk-with-me", version.toString())
 
     pom {
         name = "chzzk-with-me"
