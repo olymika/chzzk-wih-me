@@ -1,10 +1,15 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
     kotlin("jvm") version "2.0.0"
     kotlin("plugin.serialization") version "2.0.20"
     id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
+    id("com.vanniktech.maven.publish") version "0.29.0"
+    id("signing")
 }
 
 group = "org.olymika"
+version = "0.0.1"
 
 repositories {
     mavenCentral()
@@ -47,4 +52,41 @@ kotlin {
             }
         }
     }
+}
+
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+    coordinates("org.olymika", "chzzk-with-me", version.toString())
+
+    pom {
+        name = "chzzk-with-me"
+        description = "chzzk coroutine sdk"
+        inceptionYear = "2024"
+        url = "olymika.org"
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+            }
+        }
+
+        developers {
+            developer {
+                id by "olymika"
+                name by "olymika Teams"
+                url by "https://github.com/olymika"
+            }
+        }
+        scm {
+            url = "https://github.com/olymika/chzzk-with-me/tree/master"
+            connection = "scm:git:git://github.com/olymika/chzzk-with-me.git"
+            developerConnection = "scm:git:ssh://github.com/olymika/chzzk-with-me.git"
+        }
+    }
+}
+
+infix fun <T> Property<T>.by(value: T) {
+    set(value)
 }
