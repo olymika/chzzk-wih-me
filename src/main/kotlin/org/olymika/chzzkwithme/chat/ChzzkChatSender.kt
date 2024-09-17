@@ -1,4 +1,4 @@
-package org.chk.chzzkwithme.chat
+package org.olymika.chzzkwithme.chat
 
 import java.util.Queue
 import java.util.concurrent.LinkedBlockingQueue

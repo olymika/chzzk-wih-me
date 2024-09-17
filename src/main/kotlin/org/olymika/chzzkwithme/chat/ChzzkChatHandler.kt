@@ -1,4 +1,4 @@
-package org.chk.chzzkwithme.chat
+package org.olymika.chzzkwithme.chat
 
 import io.ktor.websocket.WebSocketSession
 import io.ktor.websocket.close

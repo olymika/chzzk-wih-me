@@ -1,7 +1,7 @@
-package org.chk.chzzkwithme.utils
+package org.olymika.chzzkwithme.utils
 
-import org.chk.chzzkwithme.utils.ChzzkResponseUtils.CHZZK_CODE
-import org.chk.chzzkwithme.utils.ChzzkResponseUtils.OK
+import org.olymika.chzzkwithme.utils.ChzzkResponseUtils.CHZZK_CODE
+import org.olymika.chzzkwithme.utils.ChzzkResponseUtils.OK
 
 object ChzzkResponseUtils {
     const val CHZZK_CODE = "code"

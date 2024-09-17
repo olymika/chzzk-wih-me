@@ -1,4 +1,4 @@
-package org.chk.chzzkwithme.utils
+package org.olymika.chzzkwithme.utils
 
 object ChzzkUrlUtils {
     const val BASE_URL = "https://api.chzzk.naver.com"

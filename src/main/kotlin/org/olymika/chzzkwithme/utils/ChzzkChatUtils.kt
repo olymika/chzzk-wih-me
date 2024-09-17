@@ -1,9 +1,9 @@
-package org.chk.chzzkwithme.utils
+package org.olymika.chzzkwithme.utils
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.chk.chzzkwithme.chat.ChzzkSendChatBase
+import org.olymika.chzzkwithme.chat.ChzzkSendChatBase
 import kotlin.time.Duration
 
 object ChzzkChatUtils {

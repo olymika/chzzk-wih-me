@@ -1,6 +1,6 @@
-package org.chk.chzzkwithme
+package org.olymika.chzzkwithme
 
-import org.chk.chzzkwithme.AccessTokenContent.ChzzkUserToken
+import org.olymika.chzzkwithme.AccessTokenContent.ChzzkUserToken
 
 interface ChzzkHttpClient : ChzzkHttpClientProvider, UserApiSupporter
 

@@ -1,4 +1,4 @@
-package org.chk.chzzkwithme.chat
+package org.olymika.chzzkwithme.chat
 
 abstract class ChzzkChatBase<T>(
     val cid: String = "",

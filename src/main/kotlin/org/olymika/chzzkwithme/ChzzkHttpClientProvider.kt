@@ -1,4 +1,4 @@
-package org.chk.chzzkwithme
+package org.olymika.chzzkwithme
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -17,12 +17,12 @@ import okhttp3.OkHttpClient
 import okhttp3.OkHttpClient.*
 import okhttp3.coroutines.executeAsync
 import okhttp3.logging.HttpLoggingInterceptor
-import org.chk.chzzkwithme.AccessTokenContent.ChzzkUserToken
-import org.chk.chzzkwithme.utils.ChzzkUrlUtils.BASE_URL
-import org.chk.chzzkwithme.utils.ChzzkUrlUtils.CHANNEL_SUFFIX
-import org.chk.chzzkwithme.utils.ChzzkUrlUtils.GAME_API_URL
-import org.chk.chzzkwithme.utils.fromJson
-import org.chk.chzzkwithme.utils.resolveResultOrFailProcess
+import org.olymika.chzzkwithme.AccessTokenContent.ChzzkUserToken
+import org.olymika.chzzkwithme.utils.ChzzkUrlUtils.BASE_URL
+import org.olymika.chzzkwithme.utils.ChzzkUrlUtils.CHANNEL_SUFFIX
+import org.olymika.chzzkwithme.utils.ChzzkUrlUtils.GAME_API_URL
+import org.olymika.chzzkwithme.utils.fromJson
+import org.olymika.chzzkwithme.utils.resolveResultOrFailProcess
 import java.util.concurrent.TimeUnit
 
 class ChzzkHttpClientDelegator(

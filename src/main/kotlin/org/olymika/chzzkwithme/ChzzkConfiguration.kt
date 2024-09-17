@@ -1,11 +1,11 @@
-package org.chk.chzzkwithme
+package org.olymika.chzzkwithme
 
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.chk.chzzkwithme.chat.ChzzkChatListener
-import org.chk.chzzkwithme.chat.ChzzkChatMessage
-import org.chk.chzzkwithme.chat.ChzzkChatType
-import org.chk.chzzkwithme.chat.chatHandler
+import org.olymika.chzzkwithme.chat.ChzzkChatListener
+import org.olymika.chzzkwithme.chat.ChzzkChatMessage
+import org.olymika.chzzkwithme.chat.ChzzkChatType
+import org.olymika.chzzkwithme.chat.chatHandler
 
 class ChzzkConfig {
     internal var clientConfig: HttpClientConfig.() -> Unit = {}

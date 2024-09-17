@@ -1,8 +1,8 @@
-package org.chk.chzzkwithme
+package org.olymika.chzzkwithme
 
 import kotlinx.coroutines.runBlocking
-import org.chk.chzzkwithme.TestChannel.HAN_DONG_SUK
 import org.junit.jupiter.api.assertAll
+import org.olymika.chzzkwithme.TestChannel.HAN_DONG_SUK
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull

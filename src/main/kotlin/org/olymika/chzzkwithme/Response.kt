@@ -1,4 +1,4 @@
-package org.chk.chzzkwithme
+package org.olymika.chzzkwithme
 
 import kotlinx.serialization.Serializable
 

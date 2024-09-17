@@ -1,4 +1,4 @@
-package org.chk.chzzkwithme
+package org.olymika.chzzkwithme
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -6,10 +6,10 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.chk.chzzkwithme.AccessTokenContent.ChzzkUserToken
-import org.chk.chzzkwithme.chat.ChzzkChatHandler
-import org.chk.chzzkwithme.chat.ChzzkWsClientFactory
-import org.chk.chzzkwithme.chat.Ktor
+import org.olymika.chzzkwithme.AccessTokenContent.ChzzkUserToken
+import org.olymika.chzzkwithme.chat.ChzzkChatHandler
+import org.olymika.chzzkwithme.chat.ChzzkWsClientFactory
+import org.olymika.chzzkwithme.chat.Ktor
 
 class Chzzk internal constructor(
     private val channelId: String?,

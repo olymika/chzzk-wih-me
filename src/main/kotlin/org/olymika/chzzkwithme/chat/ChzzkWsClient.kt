@@ -1,18 +1,18 @@
-package org.chk.chzzkwithme.chat
+package org.olymika.chzzkwithme.chat
 
 import io.ktor.websocket.WebSocketSession
 import io.ktor.websocket.send
 import kotlinx.coroutines.coroutineScope
-import org.chk.chzzkwithme.AccessTokenContent
-import org.chk.chzzkwithme.HttpClientConfig
-import org.chk.chzzkwithme.chat.ChzzkMesssageType.Commands.CHAT
-import org.chk.chzzkwithme.chat.ChzzkMesssageType.Commands.CONNECTED
-import org.chk.chzzkwithme.chat.ChzzkMesssageType.Commands.DONATION
-import org.chk.chzzkwithme.chat.ChzzkMesssageType.Commands.PING
-import org.chk.chzzkwithme.chat.ChzzkMesssageType.Commands.RECENT_CHAT
-import org.chk.chzzkwithme.utils.fromJson
-import org.chk.chzzkwithme.utils.readTree
-import org.chk.chzzkwithme.utils.toJson
+import org.olymika.chzzkwithme.AccessTokenContent
+import org.olymika.chzzkwithme.HttpClientConfig
+import org.olymika.chzzkwithme.chat.ChzzkMesssageType.Commands.CHAT
+import org.olymika.chzzkwithme.chat.ChzzkMesssageType.Commands.CONNECTED
+import org.olymika.chzzkwithme.chat.ChzzkMesssageType.Commands.DONATION
+import org.olymika.chzzkwithme.chat.ChzzkMesssageType.Commands.PING
+import org.olymika.chzzkwithme.chat.ChzzkMesssageType.Commands.RECENT_CHAT
+import org.olymika.chzzkwithme.utils.fromJson
+import org.olymika.chzzkwithme.utils.readTree
+import org.olymika.chzzkwithme.utils.toJson
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference
 

@@ -1,13 +1,13 @@
-package org.chk.chzzkwithme
+package org.olymika.chzzkwithme
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.chk.chzzkwithme.TestChannel.HAN_DONG_SUK
-import org.chk.chzzkwithme.chat.ChzzkChatListener
-import org.chk.chzzkwithme.chat.ChzzkChatMessage
-import org.chk.chzzkwithme.chat.chatHandler
+import org.olymika.chzzkwithme.TestChannel.HAN_DONG_SUK
+import org.olymika.chzzkwithme.chat.ChzzkChatListener
+import org.olymika.chzzkwithme.chat.ChzzkChatMessage
+import org.olymika.chzzkwithme.chat.chatHandler
 import kotlin.test.Test
 import kotlin.test.assertTrue
 

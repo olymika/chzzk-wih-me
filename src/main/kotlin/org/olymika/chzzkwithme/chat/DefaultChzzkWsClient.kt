@@ -1,4 +1,4 @@
-package org.chk.chzzkwithme.chat
+package org.olymika.chzzkwithme.chat
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
@@ -17,12 +17,12 @@ import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
-import org.chk.chzzkwithme.AccessTokenContent
-import org.chk.chzzkwithme.HttpClientConfig
-import org.chk.chzzkwithme.LoggingLevel
-import org.chk.chzzkwithme.utils.ChzzkChatUtils.createSendChatMessage
-import org.chk.chzzkwithme.utils.ChzzkUrlUtils
-import org.chk.chzzkwithme.utils.toJson
+import org.olymika.chzzkwithme.AccessTokenContent
+import org.olymika.chzzkwithme.HttpClientConfig
+import org.olymika.chzzkwithme.LoggingLevel
+import org.olymika.chzzkwithme.utils.ChzzkChatUtils.createSendChatMessage
+import org.olymika.chzzkwithme.utils.ChzzkUrlUtils
+import org.olymika.chzzkwithme.utils.toJson
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference
 
