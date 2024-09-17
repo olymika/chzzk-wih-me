@@ -1,3 +1,4 @@
+import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
@@ -54,10 +55,17 @@ kotlin {
     }
 }
 
+signing {
+    sign(publishing.publications)
+}
+
 mavenPublishing {
+    signAllPublications()
+
+    JavadocJar.None()
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-    coordinates("org.olymika", "chzzk-with-me", version.toString())
+    coordinates("org.olymika", "chzzk-with-me", "0.0.1")
 
     pom {
         name = "chzzk-with-me"
@@ -80,7 +88,7 @@ mavenPublishing {
             }
         }
         scm {
-            url = "https://github.com/olymika/chzzk-with-me/tree/master"
+            url = "https://github.com/olymika/chzzk-with-me"
             connection = "scm:git:git://github.com/olymika/chzzk-with-me.git"
             developerConnection = "scm:git:ssh://github.com/olymika/chzzk-with-me.git"
         }
