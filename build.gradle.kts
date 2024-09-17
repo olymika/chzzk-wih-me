@@ -4,7 +4,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
 }
 
-group = "org.chk"
+group = "org.olymika"
 
 repositories {
     mavenCentral()
