@@ -7,7 +7,7 @@ repositories {
     mavenCentral()
 }
 
-implementation("org.olymika:chzzk-with-me:0.0.1")
+implementation("org.olymika:chzzk-with-me:0.0.2")
 ```
 
 ## Chzzk API
