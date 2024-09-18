@@ -63,14 +63,7 @@ class ChzzkChatReceiveHandler(
                 ws.send(toJson(ChzzkChatBoundPong()))
             }
 
-            RECENT_CHAT -> {
-                val recentChatMessage = fromJson<ChzzkRecentChatBase>(message)
-                recentChatMessage.bdy.messageList.forEach {
-                    if (it.userId != "@OPEN") {
-                        println(it)
-                    }
-                }
-            }
+            RECENT_CHAT -> {}
 
             CHAT ->
                 listeners.forEach {
