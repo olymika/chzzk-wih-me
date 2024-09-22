@@ -75,6 +75,21 @@ runBlocking {
 }
 ```
 
+### Following Channels API
+```kotlin
+val chzzk = chzzk {
+    channelId = "c7ded8ea6b0605d3c78e18650d2df83b"
+
+    auth {
+        nidAut = "NID_AUT"
+        nidSes = "NID_SES"
+    }
+}
+
+runBlocking {
+    val followingChannels = chzzk.getFollowingChannels()
+}
+```
 - - -
 
 ## Chzzk Chat
