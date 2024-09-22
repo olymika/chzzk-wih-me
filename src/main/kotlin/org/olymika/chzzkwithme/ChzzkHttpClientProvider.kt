@@ -249,7 +249,7 @@ interface ChzzkHttpClientFactory {
 
 class HttpClientConfig {
     var loggingLevel: LoggingLevel = LoggingLevel.NONE
-    var connectionTimeOut: Long = 30
+    var connectionTimeOut: Long = 10_000
     var connectionTimeUnit: TimeUnit = TimeUnit.SECONDS
     var writeTimeOut: Long = 30
     var writeTimeUnit: TimeUnit = TimeUnit.SECONDS
