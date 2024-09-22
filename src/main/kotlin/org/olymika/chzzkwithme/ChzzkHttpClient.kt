@@ -12,6 +12,12 @@ interface ChzzkHttpClientProvider {
         auth: ChzzkUserAuth? = null,
     ): ChzzkUserToken
 
+    suspend fun getFollowingChannels(
+        page: Int = 0,
+        size: Long = 505,
+        auth: ChzzkUserAuth?,
+    ): List<FollowingChannel>
+
     suspend fun close()
 }
 

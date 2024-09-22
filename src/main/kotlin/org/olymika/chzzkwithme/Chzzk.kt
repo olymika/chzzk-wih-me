@@ -23,6 +23,12 @@ class Chzzk internal constructor(
 
     suspend fun getUser(auth: ChzzkUserAuth? = null): ChzzkUser = client.getUser(auth ?: this.chzzkUserAuth)
 
+    suspend fun getFollowingChannels(
+        page: Int = 0,
+        size: Long = 505,
+        auth: ChzzkUserAuth? = null,
+    ): List<FollowingChannel> = client.getFollowingChannels(page, size, auth ?: this.chzzkUserAuth)
+
     suspend fun chat(
         handler: ChzzkChatHandler,
         factory: ChzzkWsClientFactory = Ktor,

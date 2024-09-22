@@ -43,6 +43,12 @@ class ChzzkHttpClientDelegator(
         auth: ChzzkUserAuth?,
     ): ChzzkUserToken = candidates.firstOrNull { it is UserApiSupporter }?.getToken(chatChannelId, auth) ?: throw IllegalStateException("Not Found Chzzk Client")
 
+    override suspend fun getFollowingChannels(
+        page: Int,
+        size: Long,
+        auth: ChzzkUserAuth?,
+    ): List<FollowingChannel> = candidates.firstOrNull { it is UserApiSupporter }?.getFollowingChannels(page, size, auth) ?: throw IllegalStateException("Not Found Chzzk Client")
+
     override suspend fun close() {
         candidates.forEach { it.close() }
     }
@@ -95,6 +101,16 @@ class KtorChzzkHttpClient(
         client.get("${GAME_API_URL}/v1/chats/access-token?channelId=$chatChannelId&chatType=STREAMING")
             .body<AccessTokenContent>()
             .content
+
+    override suspend fun getFollowingChannels(
+        page: Int,
+        size: Long,
+        auth: ChzzkUserAuth?,
+    ): List<FollowingChannel> =
+        client.get("${BASE_URL}/service/v1/channels/followings?page=$page&size=$size&sortType=FOLLOW")
+            .body<FollowingChannelContent>()
+            .content
+            .followingList
 
     override suspend fun close() {
         client.close()
@@ -224,6 +240,24 @@ class OkHttpChzzkClient(config: HttpClientConfig) : ChzzkHttpClientProvider, Use
 
         requireNotNull(userClient) { "The client was not initialized lazily" }
         return block()
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    override suspend fun getFollowingChannels(
+        page: Int,
+        size: Long,
+        auth: ChzzkUserAuth?,
+    ): List<FollowingChannel> {
+        return callWithLazySetUserClient(auth) {
+            requireNotNull(userClient) { "The client was not initialized lazily" }.newCall(
+                okhttp3.Request.Builder().url("${BASE_URL}/service/v1/channels/followings?page=$page&size=$size&sortType=FOLLOW")
+                    .build(),
+            ).executeAsync().use { response ->
+                fromJson<FollowingChannelContent>(response.body.string())
+                    .content
+                    .followingList
+            }
+        }
     }
 
     override suspend fun close() {
