@@ -7,7 +7,7 @@ repositories {
     mavenCentral()
 }
 
-implementation("org.olymika:chzzk-with-me:0.0.5")
+implementation("org.olymika:chzzk-with-me:0.0.6")
 ```
 
 ## Chzzk API
@@ -120,6 +120,58 @@ val handler: ChzzkChatHandler = chatHandler {
 // Start the chat client in a coroutine
 runBlocking {
     launch { chzzk.chat(handler) }
+}
+```
+
+The chat message contains the profile information of the message user. <br>
+You can obtain the nickname and profileImageUrl from the Profile of ChzzkChatMessage.
+```kotlin
+val handler: ChzzkChatHandler = chatHandler {
+
+    // You can add multiple listeners using `addListener`
+    addListener(object : ChzzkChatListener {
+        override suspend fun receive(message: ChzzkChatMessage) {
+            message.chats.forEach {
+                when (it.type) {
+                    ChzzkChatType.DONATION -> {
+                        it.profile?.let { profile ->
+                            println("nickname: ${profile.nickname}")
+                            println("profileImageUrl: ${profile.profileImageUrl}")
+                        }
+                    }
+
+                    ChzzkChatType.NORMAL -> {
+                        it.profile?.let { profile ->
+                            println("nickname: ${profile.nickname}")
+                            println("profileImageUrl: ${profile.profileImageUrl}")
+                        }
+                    }
+                }
+            }
+        }
+    })
+}
+```
+
+If it's a donation, you can find out how much cheese was delivered through the extra field.
+```kotlin
+val handler = chatHandler {
+    addListener(object : ChzzkChatListener {
+        override suspend fun receive(message: ChzzkChatMessage) {
+            message.chats.forEach {
+                when(it.type) {
+                    ChzzkChatType.DONATION -> {
+                        it.extras?.let { extras ->
+                            println("Donation is Anonymous: ${extras.isAnonymous}")
+                            println("Donation nickname : ${extras.nickname}")
+                            println("Donation amount : ${extras.payAmount}")
+                        }
+                    }
+                    ChzzkChatType.NORMAL -> {}
+                }
+            }
+        }
+    })
 }
 ```
 
