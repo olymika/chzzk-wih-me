@@ -11,7 +11,7 @@ object ChzzkResponseUtils {
 
 internal fun <T, R> T.resolveResultOrFailProcess(
     body: String,
-    block: T.() -> R,
+    block: T.() -> R
 ): R {
     val jsonNode = readTree(body)
     val code = jsonNode.get(CHZZK_CODE).asText() ?: throw IllegalStateException("Invalid Chzzk Response")

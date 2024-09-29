@@ -4,37 +4,37 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class LiveDetailContent(
-    val content: ChatChannelId,
+    val content: ChatChannelId
 ) {
     @Serializable
     data class ChatChannelId(
-        val chatChannelId: String,
+        val chatChannelId: String
     )
 }
 
 @Serializable
 data class AccessTokenContent(
-    val content: ChzzkUserToken,
+    val content: ChzzkUserToken
 ) {
     @Serializable
     data class ChzzkUserToken(
         val accessToken: String,
-        val extraToken: String,
+        val extraToken: String
     )
 }
 
 @Serializable
 data class ChzzkUserContent(
-    val content: ChzzkUser,
+    val content: ChzzkUser
 )
 
 @Serializable
 data class FollowingChannelContent(
-    val content: Content,
+    val content: Content
 ) {
     @Serializable
     data class Content(
-        val followingList: List<FollowingChannel>,
+        val followingList: List<FollowingChannel>
     )
 }
 
@@ -43,23 +43,23 @@ data class FollowingChannel(
     val channelId: String,
     val channel: Channel,
     val streamer: Streamer,
-    val liveInfo: LiveInfo,
+    val liveInfo: LiveInfo
 ) {
     @Serializable
     data class Channel(
         val channelName: String,
-        val channelImageUrl: String,
+        val channelImageUrl: String
     )
 
     @Serializable
     data class Streamer(
-        val openLive: Boolean,
+        val openLive: Boolean
     )
 
     @Serializable
     data class LiveInfo(
         val liveTitle: String?,
         val concurrentUserCount: Long,
-        val liveCategoryValue: String,
+        val liveCategoryValue: String
     )
 }

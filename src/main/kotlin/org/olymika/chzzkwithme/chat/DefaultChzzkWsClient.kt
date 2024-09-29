@@ -29,13 +29,13 @@ import java.util.concurrent.atomic.AtomicReference
 object Ktor : ChzzkWsClientFactory {
     override fun create(
         config: HttpClientConfig,
-        handler: ChzzkChatHandler,
+        handler: ChzzkChatHandler
     ): ChzzkWsClient = KtorChzzkWsClient(config, handler)
 }
 
 class KtorChzzkWsClient(
     config: HttpClientConfig,
-    handlers: ChzzkChatHandler,
+    handlers: ChzzkChatHandler
 ) : ChzzkWsClient {
     override val connectSendFlag = AtomicBoolean(false)
     override val sid: AtomicReference<String> = AtomicReference("")
@@ -78,7 +78,7 @@ class KtorChzzkWsClient(
         chatHandler: ChzzkChatHandler,
         chatChannelId: String,
         userToken: AccessTokenContent.ChzzkUserToken,
-        userHashId: String?,
+        userHashId: String?
     ) {
         client.ws(ChzzkUrlUtils.CHAT_URL) {
             chatHandler.session.set(this)
@@ -120,7 +120,7 @@ class KtorChzzkWsClient(
         ws: WebSocketSession,
         chatChannelId: String,
         accessToken: String,
-        userHashId: String?,
+        userHashId: String?
     ) {
         ChzzkChatOpenBase(
             cid = chatChannelId,

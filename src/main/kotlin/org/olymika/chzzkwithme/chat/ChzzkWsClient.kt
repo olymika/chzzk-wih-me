@@ -26,24 +26,24 @@ interface ChzzkWsClient {
         chatHandler: ChzzkChatHandler,
         chatChannelId: String,
         userToken: AccessTokenContent.ChzzkUserToken,
-        userHashId: String?,
+        userHashId: String?
     )
 }
 
 interface ChzzkWsClientFactory {
     fun create(
         config: HttpClientConfig,
-        handler: ChzzkChatHandler,
+        handler: ChzzkChatHandler
     ): ChzzkWsClient
 }
 
 class ChzzkChatReceiveHandler(
-    private val listeners: List<ChzzkChatListener>,
+    private val listeners: List<ChzzkChatListener>
 ) {
     suspend fun handle(
         message: String,
         ws: WebSocketSession,
-        sidRef: AtomicReference<String>,
+        sidRef: AtomicReference<String>
     ) = coroutineScope {
         val cmdNode = readTree(message).get("cmd")
 

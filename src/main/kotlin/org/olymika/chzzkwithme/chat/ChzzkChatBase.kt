@@ -1,12 +1,15 @@
 package org.olymika.chzzkwithme.chat
 
+import org.olymika.chzzkwithme.utils.fromJson
+import java.math.BigDecimal
+
 abstract class ChzzkChatBase<T>(
     val cid: String = "",
     val svcid: String = "game",
     val ver: String = "3",
     val cmd: Int = ChzzkMesssageType.Commands.CONNECT,
     val bdy: T,
-    val tid: Int = 1,
+    val tid: Int = 1
 )
 
 class ChzzkChatOpenBase(
@@ -15,7 +18,7 @@ class ChzzkChatOpenBase(
     ver: String = "3",
     cmd: Int = ChzzkMesssageType.Commands.CONNECT,
     bdy: Body,
-    tid: Int = 1,
+    tid: Int = 1
 ) : ChzzkChatBase<ChzzkChatOpenBase.Body>(
         cid = cid,
         svcid = svcid,
@@ -33,18 +36,18 @@ class ChzzkChatOpenBase(
         val osVer: String = "macOs/10.15.7",
         val locale: String = "ko",
         val timezone: String = "Asia/Seoul",
-        val uid: String?,
+        val uid: String?
     )
 }
 
 data class ChzzkChatBoundPing(
     var cmd: Int = ChzzkMesssageType.Commands.PING,
-    var ver: String = "2",
+    var ver: String = "2"
 )
 
 data class ChzzkChatBoundPong(
     val cmd: Int = ChzzkMesssageType.Commands.PONG,
-    val ver: String = "2",
+    val ver: String = "2"
 )
 
 class ChzzkSendChatBase(
@@ -57,7 +60,7 @@ class ChzzkSendChatBase(
     val sid: String,
     val retry: Boolean = false,
     val msgTime: Long = System.currentTimeMillis(),
-    val msgTypCode: Int = ChzzkMesssageType.ChatTypes.TEXT,
+    val msgTypCode: Int = ChzzkMesssageType.ChatTypes.TEXT
 ) : ChzzkChatBase<ChzzkSendChatBase.Body>(
         cid = cid,
         svcid = svcid,
@@ -71,14 +74,14 @@ class ChzzkSendChatBase(
         val osType: String = "PC",
         val extraToken: String,
         val streamChannelId: String,
-        val emojis: String = "",
+        val emojis: String = ""
     )
 
     data class Body(
         val extras: String,
         val msg: String,
         val msgTime: Long = System.currentTimeMillis(),
-        val msgTypCode: Int = ChzzkMesssageType.ChatTypes.TEXT,
+        val msgTypCode: Int = ChzzkMesssageType.ChatTypes.TEXT
     )
 }
 
@@ -90,7 +93,7 @@ class ChzzkChatConnectBase(
     bdy: Body,
     tid: Int = 1,
     val retCode: Int,
-    val retMsg: String,
+    val retMsg: String
 ) : ChzzkChatBase<ChzzkChatConnectBase.Body>(
         cid = cid,
         svcid = svcid,
@@ -100,7 +103,7 @@ class ChzzkChatConnectBase(
         tid = tid,
     ) {
     data class Body(
-        val sid: String,
+        val sid: String
     )
 }
 
@@ -110,7 +113,7 @@ class ChzzkRecentChatBase(
     ver: String = "3",
     cmd: Int = ChzzkMesssageType.Commands.SEND_CHAT,
     bdy: Body,
-    tid: Int = 1,
+    tid: Int = 1
 ) : ChzzkChatBase<ChzzkRecentChatBase.Body>(
         cid = cid,
         svcid = svcid,
@@ -121,7 +124,7 @@ class ChzzkRecentChatBase(
     ) {
     data class Body(
         val messageList: List<RecentChat>,
-        val userCount: Int,
+        val userCount: Int
     )
 
     data class RecentChat(
@@ -130,7 +133,7 @@ class ChzzkRecentChatBase(
         val messageTypeCode: Int,
         val createTime: Long,
         val extras: String,
-        val profile: String,
+        val profile: String
     )
 }
 
@@ -140,37 +143,61 @@ data class ChzzkChatReceiveMessage(
     val ver: String,
     val cmd: Int,
     val bdy: List<Body>,
-    val tid: String? = null,
+    val tid: String? = null
 ) {
     data class Body(
         val profile: String? = null,
         val msg: String,
+        val extras: String? = null
     )
 
     fun toChatMessage(type: ChzzkChatType): ChzzkChatMessage =
         bdy.map {
-            ChzzkChatMessage.Chat(
-                profile = it.profile,
-                msg = it.msg,
-                type = type,
-            )
+            when (type) {
+                ChzzkChatType.NORMAL ->
+                    ChzzkChatMessage.Chat(
+                        profile = it.profile?.let { profile -> fromJson<ChzzkChatProfile>(profile) },
+                        msg = it.msg,
+                        type = type,
+                    )
+
+                ChzzkChatType.DONATION ->
+                    ChzzkChatMessage.Chat(
+                        profile = it.profile?.let { profile -> fromJson<ChzzkChatProfile>(profile) },
+                        msg = it.msg,
+                        type = type,
+                        extras = it.extras?.let { extras -> fromJson<ChzzkChatDonationExtras>(extras) },
+                    )
+            }
         }.let { ChzzkChatMessage(it) }
 }
 
 data class ChzzkChatMessage(
-    val chats: List<Chat>,
+    val chats: List<Chat>
 ) {
     data class Chat(
-        val profile: String? = null,
+        val profile: ChzzkChatProfile?,
         val msg: String,
         val type: ChzzkChatType,
+        val extras: ChzzkChatDonationExtras? = null
     )
 }
 
 enum class ChzzkChatType {
     NORMAL,
-    DONATION,
+    DONATION
 }
+
+data class ChzzkChatProfile(
+    val nickname: String,
+    val profileImageUrl: String?
+)
+
+data class ChzzkChatDonationExtras(
+    val isAnonymous: Boolean,
+    val payAmount: BigDecimal?,
+    val nickname: String?
+)
 
 internal class ChzzkMesssageType {
     internal object Commands {

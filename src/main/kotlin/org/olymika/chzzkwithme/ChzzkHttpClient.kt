@@ -9,13 +9,13 @@ interface ChzzkHttpClientProvider {
 
     suspend fun getToken(
         chatChannelId: String,
-        auth: ChzzkUserAuth? = null,
+        auth: ChzzkUserAuth? = null
     ): ChzzkUserToken
 
     suspend fun getFollowingChannels(
         page: Int = 0,
         size: Long = 505,
-        auth: ChzzkUserAuth?,
+        auth: ChzzkUserAuth?
     ): List<FollowingChannel>
 
     suspend fun close()

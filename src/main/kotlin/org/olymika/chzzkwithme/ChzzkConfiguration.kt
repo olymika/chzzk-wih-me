@@ -22,7 +22,7 @@ class AuthConfig {
 
 fun chzzk(
     clientFactory: ChzzkHttpClientFactory? = null,
-    config: ChzzkConfig.() -> Unit = {},
+    config: ChzzkConfig.() -> Unit = {}
 ): Chzzk {
     val chzzkConfig = ChzzkConfig().apply(config)
     val clientConfig = HttpClientConfig().apply(chzzkConfig.clientConfig)

@@ -5,7 +5,7 @@ import io.ktor.websocket.close
 import java.util.concurrent.atomic.AtomicReference
 
 class ChzzkChatHandler internal constructor(
-    internal val listeners: List<ChzzkChatListener> = mutableListOf(),
+    internal val listeners: List<ChzzkChatListener> = mutableListOf()
 ) {
     internal val sender: ChzzkChatSender = ChzzkChatSender()
     internal val session: AtomicReference<WebSocketSession> = AtomicReference()

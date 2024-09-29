@@ -11,7 +11,7 @@ object ChzzkChatUtils {
         message: String,
         chatChannelId: String,
         sid: String,
-        extraToken: String,
+        extraToken: String
     ) = toJson(
         ChzzkSendChatBase(
             cid = chatChannelId,
@@ -27,7 +27,7 @@ object ChzzkChatUtils {
 
 internal fun CoroutineScope.launchPeriod(
     interval: Duration,
-    action: suspend () -> Unit,
+    action: suspend () -> Unit
 ) {
     launch {
         while (true) {

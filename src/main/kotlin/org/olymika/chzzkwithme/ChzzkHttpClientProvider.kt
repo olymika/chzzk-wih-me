@@ -26,7 +26,7 @@ import org.olymika.chzzkwithme.utils.resolveResultOrFailProcess
 import java.util.concurrent.TimeUnit
 
 class ChzzkHttpClientDelegator(
-    private val candidates: List<ChzzkHttpClientProvider>,
+    private val candidates: List<ChzzkHttpClientProvider>
 ) : ChzzkHttpClient {
     override suspend fun getUser(auth: ChzzkUserAuth?): ChzzkUser {
         val supporter = candidates.firstOrNull { it is UserApiSupporter }
@@ -40,13 +40,13 @@ class ChzzkHttpClientDelegator(
 
     override suspend fun getToken(
         chatChannelId: String,
-        auth: ChzzkUserAuth?,
+        auth: ChzzkUserAuth?
     ): ChzzkUserToken = candidates.firstOrNull { it is UserApiSupporter }?.getToken(chatChannelId, auth) ?: throw IllegalStateException("Not Found Chzzk Client")
 
     override suspend fun getFollowingChannels(
         page: Int,
         size: Long,
-        auth: ChzzkUserAuth?,
+        auth: ChzzkUserAuth?
     ): List<FollowingChannel> = candidates.firstOrNull { it is UserApiSupporter }?.getFollowingChannels(page, size, auth) ?: throw IllegalStateException("Not Found Chzzk Client")
 
     override suspend fun close() {
@@ -55,7 +55,7 @@ class ChzzkHttpClientDelegator(
 }
 
 class KtorChzzkHttpClient(
-    config: HttpClientConfig,
+    config: HttpClientConfig
 ) : ChzzkHttpClientProvider {
     private val client =
         HttpClient(OkHttp) {
@@ -96,7 +96,7 @@ class KtorChzzkHttpClient(
 
     override suspend fun getToken(
         chatChannelId: String,
-        auth: ChzzkUserAuth?,
+        auth: ChzzkUserAuth?
     ): ChzzkUserToken =
         client.get("${GAME_API_URL}/v1/chats/access-token?channelId=$chatChannelId&chatType=STREAMING")
             .body<AccessTokenContent>()
@@ -105,7 +105,7 @@ class KtorChzzkHttpClient(
     override suspend fun getFollowingChannels(
         page: Int,
         size: Long,
-        auth: ChzzkUserAuth?,
+        auth: ChzzkUserAuth?
     ): List<FollowingChannel> =
         client.get("${BASE_URL}/service/v1/channels/followings?page=$page&size=$size&sortType=FOLLOW")
             .body<FollowingChannelContent>()
@@ -188,7 +188,7 @@ class OkHttpChzzkClient(config: HttpClientConfig) : ChzzkHttpClientProvider, Use
     @OptIn(ExperimentalCoroutinesApi::class)
     override suspend fun getToken(
         chatChannelId: String,
-        auth: ChzzkUserAuth?,
+        auth: ChzzkUserAuth?
     ): ChzzkUserToken =
         callWithLazySetUserClient(auth) {
             requireNotNull(userClient) { "The client was not initialized lazily" }
@@ -204,7 +204,7 @@ class OkHttpChzzkClient(config: HttpClientConfig) : ChzzkHttpClientProvider, Use
     @OptIn(ExperimentalOkHttpApi::class)
     private suspend fun <T> callWithLazySetUserClient(
         auth: ChzzkUserAuth? = null,
-        block: suspend () -> T,
+        block: suspend () -> T
     ): T {
         if (userClient == null) {
             userClient =
@@ -246,7 +246,7 @@ class OkHttpChzzkClient(config: HttpClientConfig) : ChzzkHttpClientProvider, Use
     override suspend fun getFollowingChannels(
         page: Int,
         size: Long,
-        auth: ChzzkUserAuth?,
+        auth: ChzzkUserAuth?
     ): List<FollowingChannel> {
         return callWithLazySetUserClient(auth) {
             requireNotNull(userClient) { "The client was not initialized lazily" }.newCall(
@@ -295,5 +295,5 @@ enum class LoggingLevel {
     NONE,
     HEADERS,
     BODY,
-    ALL,
+    ALL
 }

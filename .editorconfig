@@ -12,3 +12,4 @@ tab_width = 4
 
 [*.{kt,kts}]
 ktlint_standard_no-wildcard-imports = disabled
+ij_kotlin_allow_trailing_comma = false
