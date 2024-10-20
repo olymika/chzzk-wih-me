@@ -50,7 +50,7 @@ class ChzzkApiTest {
 
         assertAll(
             { assertNotNull(userToken.extraToken) },
-            { assertNotNull(userToken.extraToken) },
+            { assertNotNull(userToken.accessToken) }
         )
     }
 }
