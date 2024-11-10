@@ -71,7 +71,7 @@ val chzzk = chzzk {
 runBlocking {
     val chatChannelId = chzzk.getChatChannelId()
 
-    val chzzk.getToken(chatChannelId)
+    chzzk.getToken(chatChannelId)
 }
 ```
 
