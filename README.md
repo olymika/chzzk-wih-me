@@ -1,5 +1,6 @@
 
 # Chzzk with Me
+chzzk with me is an unofficial library that allows you to integrate with [Naver Chzzk](https://chzzk.naver.com/) API.
 
 First add the dependency to your project:
 ```kotlin
