@@ -1,5 +1,10 @@
 
 # Chzzk with Me
+> [!CAUTION]
+> We are aware that the current implementation is not functioning properly as Chzzk has now officially released their [public API](https://chzzk.gitbook.io/chzzk). We are planning to support the official API in our upcoming updates.
+Thank you for your patience while we work on integrating the new official Chzzk API. We appreciate your understanding during this transition period.
+Please stay tuned for updates.
+
 chzzk with me is an unofficial library that allows you to integrate with [Naver Chzzk](https://chzzk.naver.com/) API.
 
 First add the dependency to your project:
